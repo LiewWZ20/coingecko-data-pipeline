@@ -259,4 +259,4 @@ sub-second latency with zero pipeline dependency.
 
 ## 🙋 Author
 
-Built by [Liew Wei Zheng] — [LinkedIn](https://linkedin.com/in/yourprofile) · [GitHub](https://github.com/yourusername)
+Built by [Liew Wei Zheng] — [LinkedIn](https://www.linkedin.com/in/liew-wei-zheng-0224b0266/) · [GitHub](https://github.com/LiewWZ20)
