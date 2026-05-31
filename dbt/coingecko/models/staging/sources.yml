@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: public
+    database: crypto_db
+    schema: public
+    tables:
+      - name: raw_coins_markets
+      - name: raw_global_stats
+      - name: raw_price_history 

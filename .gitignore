@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.pyc
+
+# Virtual environments
+.venv
+
+# Environment
+.env
+
+# dbt
+dbt/coingecko/target/
+dbt/coingecko/dbt_packages/
+dbt/coingecko/logs/
+
+# Airflow
+logs/
+config/airflow.cfg
+
+# Docker
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

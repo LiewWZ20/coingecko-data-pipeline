@@ -1,0 +1,12 @@
+coingecko:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: crypto_warehouse
+      port: 5432
+      user: warehouse_user
+      password: warehouse_pass
+      dbname: crypto_db
+      schema: public
+      threads: 4

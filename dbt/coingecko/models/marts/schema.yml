@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: fct_coin_performance
+    description: "Final coin performance fact table with market context"
+    columns:
+      - name: coin_id
+        tests:
+          - not_null
+          - unique
+      - name: coin_symbol
+        tests:
+          - not_null
+      - name: price_usd
+        tests:
+          - not_null
+      - name: market_cap_rank
+        tests:
+          - not_null
+      - name: coin_market_dominance_pct
+        tests:
+          - not_null
+
+  - name: fct_coin_price_history
+    description: "Daily price history with rolling metrics per coin"
+    columns:
+      - name: coin_id
+        tests:
+          - not_null
+      - name: price_date
+        tests:
+          - not_null
+      - name: price_usd
+        tests:
+          - not_null
+
+  - name: fct_coin_rank_changes
+    description: "CDC-style audit trail of coin rank changes captured via dbt snapshots"
+    columns:
+      - name: coin_id
+        tests:
+          - not_null
+      - name: changed_at
+        tests:
+          - not_null
+      - name: current_rank
+        tests:
+          - not_null
+      - name: direction
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['📈 UP', '📉 DOWN', '➡️ UNCHANGED']

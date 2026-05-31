@@ -1,0 +1,14 @@
+[project]
+name = "coingecko-data"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "cryptography>=48.0.0",
+    "dbt-core>=1.11.9",
+    "dbt-postgres>=1.10.0",
+    "pandas>=3.0.2",
+    "psycopg2-binary>=2.9.12",
+    "requests>=2.33.1",
+]

@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_coins_markets
+    description: "Cleaned coin market data from CoinGecko"
+    columns:
+      - name: coin_id
+        tests:
+          - not_null
+          - unique
+      - name: coin_symbol
+        tests:
+          - not_null
+      - name: price_usd
+        tests:
+          - not_null
+      - name: market_cap_rank
+        tests:
+          - not_null
+
+  - name: stg_global_stats
+    description: "Cleaned global crypto market stats"
+    columns:
+      - name: total_market_cap_usd
+        tests:
+          - not_null
+      - name: btc_dominance_pct
+        tests:
+          - not_null
+
+  - name: stg_price_history
+    description: "Cleaned daily price history per coin"
+    columns:
+      - name: coin_id
+        tests:
+          - not_null
+      - name: price_date
+        tests:
+          - not_null
+      - name: price_usd
+        tests:
+          - not_null
