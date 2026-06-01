@@ -50,4 +50,5 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['📈 UP', '📉 DOWN', '➡️ UNCHANGED']
+              arguments:
+                values: ['📈 UP', '📉 DOWN', '➡️ UNCHANGED']
