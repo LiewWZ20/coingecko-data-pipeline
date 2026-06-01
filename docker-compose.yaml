@@ -157,6 +157,12 @@ services:
                --server.port=8501
                --server.address=0.0.0.0
                --server.headless=true"
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ./streamlit/app.py:/app/app.py
       - ./streamlit/requirements.txt:/app/requirements.txt
