@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import psycopg2
 import pandas as pd
@@ -5,28 +6,29 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 
+# ── DB config ─────────────────────────────────────────────────────
+DB_CONFIG = {
+    "host": os.getenv("POSTGRES_HOST"),
+    "port": os.getenv("POSTGRES_PORT"),
+    "dbname": os.getenv("POSTGRES_DATABASE"),
+    "user": os.getenv("POSTGRES_USER"),
+    "password": os.getenv("POSTGRES_PASSWORD")
+}
+
+def run_query(sql: str) -> pd.DataFrame:
+    """Open connection, run query, close connection immediately."""
+    conn = psycopg2.connect(**DB_CONFIG)
+    try:
+        return pd.read_sql(sql, conn)
+    finally:
+        conn.close() # always released, never holds locks
+
 # ── Page config ──────────────────────────────────────────────────
 st.set_page_config(
     page_title="Crypto Analytics",
     page_icon="🪙",
     layout="wide",
 )
-
-# ── DB Connection ─────────────────────────────────────────────────
-@st.cache_resource
-def get_connection():
-    return psycopg2.connect(
-        host="crypto_warehouse",
-        port=5432,
-        dbname="crypto_db",
-        user="warehouse_user",
-        password="warehouse_pass",
-    )
-
-@st.cache_data(ttl=300)  # cache for 5 minutes
-def run_query(sql):
-    conn = get_connection()
-    return pd.read_sql(sql, conn)
 
 # ── Header ────────────────────────────────────────────────────────
 st.title("🪙 Crypto Analytics Dashboard")
