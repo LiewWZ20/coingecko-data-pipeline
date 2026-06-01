@@ -1,5 +1,8 @@
+import os
 from airflow.utils.email import send_email
 
+ALERT_EMAIL = os.getenv("ALERT_EMAIL")
+AIRFLOW_CONN_ID = os.getenv("AIRFLOW_CONN_ID")
 
 def notify_failure(context):
     """Send email alert on task failure."""
@@ -17,8 +20,8 @@ def notify_failure(context):
     <p><b>Logs:</b> <a href="{log_url}">View logs</a></p>
     """
     send_email(
-        to="wzliew20@gmail.com",
+        to=ALERT_EMAIL,
         subject=subject,
         html_content=body,
-        conn_id="smtp_gmail",
+        conn_id=AIRFLOW_CONN_ID,
     )
