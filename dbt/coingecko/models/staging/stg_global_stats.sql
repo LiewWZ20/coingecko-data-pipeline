@@ -1,6 +1,13 @@
 with source as (
     select * from {{source('public', 'raw_global_stats')}}
 ),
+latest as (
+    select *,
+        row_number() over (
+            order by extracted_at desc
+        ) as rn
+    from source
+),
 cleaned as (
     select
         active_cryptocurrencies::integer as active_cryptocurrencies,
@@ -10,6 +17,7 @@ cleaned as (
         eth_dominance::numeric as eth_dominance_pct,
         market_cap_change_pct_24h::numeric as market_cap_change_pct_24h,
         extracted_at::timestamp as extracted_at
-    from source
+    from latest
+    where rn = 1
 )
 select * from cleaned
