@@ -4,7 +4,9 @@ import psycopg2
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+utc8 = timezone(timedelta(hours=8))
 
 # ── DB config ─────────────────────────────────────────────────────
 DB_CONFIG = {
@@ -32,7 +34,7 @@ st.set_page_config(
 
 # ── Header ────────────────────────────────────────────────────────
 st.title("🪙 Crypto Analytics Dashboard")
-st.caption(f"Data refreshes every 5 minutes · Last loaded: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+st.caption(f"Data refreshes every 30 minutes · Last loaded: {datetime.now(utc8).strftime('%Y-%m-%d %H:%M:%S')}")
 
 # ── Global Market Stats ───────────────────────────────────────────
 st.subheader("🌍 Global Market Overview")
@@ -237,14 +239,15 @@ st.caption("Powered by dbt snapshots — captures every rank change as it happen
 changes_df = run_query("""
     SELECT
         changed_at,
-        coin_name       as coin,
-        coin_symbol     as symbol,
+        coin_name as coin,
+        coin_symbol as symbol,
         previous_rank,
         current_rank,
         direction,
         positions_moved,
         price_at_change
     FROM fct_coin_rank_changes
+    WHERE is_current = true
     ORDER BY changed_at DESC
     LIMIT 50
 """)
