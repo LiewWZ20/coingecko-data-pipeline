@@ -1,6 +1,15 @@
 with source as (
     select * from {{source('public', 'raw_coins_markets')}}
 ),
+-- get latest record per coin
+latest as (
+    select *,
+        row_number() over (
+            partition by id
+            order by extracted_at desc
+        ) as rn
+    from source
+),
 cleaned as (
     select
         id as coin_id,
@@ -20,6 +29,7 @@ cleaned as (
         ath_date::timestamp as all_time_high_date,
         last_updated::timestamp as last_updated_at,
         extracted_at::timestamp as extracted_at
-    from source
+    from latest
+    where rn = 1
 )
 select * from cleaned
