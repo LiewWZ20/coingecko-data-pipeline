@@ -4,7 +4,7 @@ A production-style ELT pipeline that ingests real-time cryptocurrency data from 
 
 ---
 
-## 📐 Architecture
+## Architecture
 
 ```
 CoinGecko API
@@ -79,7 +79,7 @@ CoinGecko API
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Tool |
 |---|---|
@@ -94,7 +94,7 @@ CoinGecko API
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 coingecko_data/
@@ -144,7 +144,7 @@ coingecko_data/
 
 ---
 
-## 🔷 dbt Layer Design (8 models, 24 tests)
+## dbt Layer Design (8 models, 24 tests)
 
 | Layer | Model | Materialization | Description |
 |---|---|---|---|
@@ -162,7 +162,7 @@ coingecko_data/
 
 ---
 
-## 🔄 CDC Implementation
+## CDC Implementation
 
 Rank changes are tracked using **dbt snapshots as the change capture layer**. Every pipeline run:
 
@@ -177,7 +177,7 @@ Rank changes are tracked using **dbt snapshots as the change capture layer**. Ev
 
 ---
 
-## ✅ Data Quality Tests
+## Data Quality Tests
 
 24 dbt tests covering:
 
@@ -192,7 +192,7 @@ PASS=24  WARN=0  ERROR=0  TOTAL=24
 
 ---
 
-## 📧 Alerting
+## Alerting
 
 Email alerts fire on any task failure via Airflow's SMTP integration (Gmail / Microsoft 365). Alerts include DAG name, task name, run ID, and a direct link to the task logs.
 
@@ -200,7 +200,7 @@ Email alerts fire on any task failure via Airflow's SMTP integration (Gmail / Mi
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Docker Desktop (4GB+ RAM allocated)
@@ -273,7 +273,7 @@ uv run dbt docs serve --port 18080   # lineage graph at localhost:18080
 
 ---
 
-## 📊 Sample Queries
+## Sample Queries
 
 **Current coin performance:**
 ```sql
@@ -306,7 +306,7 @@ ORDER BY changed_at DESC;
 
 ---
 
-## ⚠️ Known Limitations
+## Known Limitations
 
 - CoinGecko free tier updates every 60 seconds and allows 30 calls/minute — pipeline includes rate limit handling with retries
 - `/coins/markets` and `/global` returns current state only — intraday history is built by polling every 30 minutes
@@ -316,7 +316,7 @@ ORDER BY changed_at DESC;
 
 ---
 
-## 🔮 Production Upgrade Path
+## Production Upgrade Path
 
 | Current (Local) | Production Equivalent |
 |---|---|
@@ -330,7 +330,7 @@ ORDER BY changed_at DESC;
 
 ---
 
-## 📚 Key Concepts Demonstrated
+## Key Concepts Demonstrated
 
 - **ELT pattern** — extract and load raw, transform in warehouse
 - **Medallion-style layering** — raw → staging (bronze) → intermediate (silver) → marts (gold)
@@ -346,6 +346,6 @@ ORDER BY changed_at DESC;
 
 ---
 
-## 🙋 Author
+## Author
 
 Built by Liew Wei Zheng — [LinkedIn](https://www.linkedin.com/in/liew-wei-zheng-0224b0266/) · [GitHub](https://github.com/LiewWZ20)
