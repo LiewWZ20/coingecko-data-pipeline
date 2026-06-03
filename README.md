@@ -200,6 +200,18 @@ Email alerts fire on any task failure via Airflow's SMTP integration (Gmail / Mi
 
 ---
 
+## Dashboard
+
+- Global market overview 
+
+- Historical price chart, Daily return, Rolling volatility
+
+- Top coins performance table
+
+- Rank change history 
+
+---
+
 ## Getting Started
 
 ### Prerequisites
