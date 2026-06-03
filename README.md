@@ -196,7 +196,7 @@ PASS=24  WARN=0  ERROR=0  TOTAL=24
 
 Email alerts fire on any task failure via Airflow's SMTP integration (Gmail / Microsoft 365). Alerts include DAG name, task name, run ID, and a direct link to the task logs.
 
-![alt text](image.png)
+<img width="846" height="374" alt="email_img" src="https://github.com/user-attachments/assets/232f19eb-e23a-4988-9404-783dd20a338e" />
 
 ---
 
