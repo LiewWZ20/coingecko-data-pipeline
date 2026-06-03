@@ -202,13 +202,25 @@ Email alerts fire on any task failure via Airflow's SMTP integration (Gmail / Mi
 
 ## Dashboard
 
-- Global market overview 
+- Global market overview
+
+  <img width="1822" height="758" alt="dashboard_overview" src="https://github.com/user-attachments/assets/544b031c-4813-4496-9358-d09adb5904f6" />
+
 
 - Historical price chart, Daily return, Rolling volatility
 
+  <img width="1852" height="747" alt="history_price_volatility" src="https://github.com/user-attachments/assets/9027956c-7465-4b1f-8edd-a02b85108470" />
+
+
 - Top coins performance table
 
-- Rank change history 
+  <img width="1808" height="452" alt="coin_performance" src="https://github.com/user-attachments/assets/d006201e-615b-4072-b744-11c365f37094" />
+
+
+- Rank change history
+
+  <img width="1816" height="470" alt="sdc_cdc_rank_change" src="https://github.com/user-attachments/assets/a4708205-982b-4b63-8ced-04fb55385ade" />
+
 
 ---
 
