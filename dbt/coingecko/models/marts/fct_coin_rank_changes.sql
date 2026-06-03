@@ -49,13 +49,17 @@ changes as (
         is_current
     from with_previous
     where previous_rank is not null
+    -- and current_rank != previous_rank
 ),
 final as (
     select * from changes
     {% if is_incremental() %}
-    where changed_at >= (
-        select max(changed_at) from {{this}}
-    )
+    where changed_at > (select max(changed_at) from {{this}})
+        or (coin_id, changed_at) in (
+            select distinct coin_id, changed_at 
+            from fct_coin_rank_changes fcrc 
+            where is_current = true
+        )
     {% endif %}
 )
 select * from final
